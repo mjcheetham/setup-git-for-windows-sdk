@@ -1,0 +1,116 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+  "id": "8585b1af-8e92-49e7-9fd1-f3b1d9b50488",
+  "name": "SetupGitForWindowsSDK",
+  "friendlyName": "Setup Git for Windows SDK",
+  "description": "Set up the Git for Windows SDK on the agent.",
+  "helpMarkDown": "",
+  "category": "Utility",
+  "author": "Git for Windows",
+  "version": {
+    "Major": 1,
+    "Minor": 0,
+    "Patch": 0
+  },
+  "instanceNameFormat": "Setup Git for Windows SDK ($(flavor)) ($(architecture))",
+  "groups": [
+    {
+      "name": "advanced",
+      "displayName": "Advanced",
+      "isExpanded": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "flavor",
+      "type": "pickList",
+      "label": "Flavor",
+      "defaultValue": "build-installers",
+      "required": true,
+      "helpMarkDown": "The subset (if any) of the SDK.",
+      "options": {
+        "minimal": "Minimal",
+        "makepkg-git": "Makepkg Git",
+        "build-installers": "Build Installers",
+        "full": "Full"
+      }
+    },
+    {
+      "name": "architecture",
+      "type": "pickList",
+      "label": "Architecture",
+      "defaultValue": "x86_64",
+      "required": true,
+      "helpMarkDown": "The architecture of the SDK.",
+      "options": {
+        "i686": "i686 (32-bit)",
+        "x86_64": "x86_64 (64-bit)",
+        "aarch64": "aarch64 (ARM64)"
+      }
+    },
+    {
+      "name": "msys",
+      "type": "boolean",
+      "label": "MSYS Mode",
+      "defaultValue": "false",
+      "required": false,
+      "helpMarkDown": "Whether to start in MSYS mode.",
+      "groupName": "advanced"
+    },
+    {
+      "name": "path",
+      "type": "string",
+      "label": "Path",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "Where to write the SDK files.",
+      "groupName": "advanced"
+    },
+    {
+      "name": "cleanup",
+      "type": "boolean",
+      "label": "Cleanup",
+      "defaultValue": "false",
+      "required": false,
+      "helpMarkDown": "Whether to clean up SDK files. This is only needed on self-hosted runners that are reused for multiple jobs.",
+      "groupName": "advanced"
+    },
+    {
+      "name": "verbose",
+      "type": "int",
+      "label": "Verbose",
+      "defaultValue": "250",
+      "required": false,
+      "helpMarkDown": "Whether to log files as they are extracted.",
+      "groupName": "advanced"
+    },
+    {
+      "name": "githubToken",
+      "type": "string",
+      "label": "GitHub Token",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "Personal access token (PAT) used to call into GitHub's REST API. We recommend using a service account with the least permissions necessary. Also when generating a new PAT, select the least scopes necessary. [Learn more about creating and using encrypted secrets](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets).",
+      "groupName": "advanced"
+    }
+  ],
+  "outputVariables": [
+    {
+      "name": "result",
+      "description": "The path where the Git for Windows SDK was installed."
+    }
+  ],
+  "execution": {
+    "Node20_1": {
+      "target": "dist/index.js"
+    }
+  },
+  "restrictions": {
+    "commands": {
+      "mode": "restricted"
+    },
+    "settableVariables": {
+      "allowed": []
+    }
+  }
+}

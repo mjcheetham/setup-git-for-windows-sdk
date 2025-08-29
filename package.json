@@ -4,7 +4,8 @@
   "private": true,
   "workspaces": [
     "shared",
-    "github-action"
+    "github-action",
+    "azure-task"
   ],
   "scripts": {
     "build": "npm run build --workspaces",
@@ -12,7 +13,7 @@
     "format-check": "npm run format-check --workspaces",
     "lint": "npm run lint --workspaces",
     "test": "npm run test --workspaces",
-    "package": "npm run package --workspace=github-action",
+    "package": "npm run package --workspace=github-action && npm run package --workspace=azure-task",
     "all": "npm run build && npm run format && npm run lint && npm run package && npm run test",
     "install-all": "npm install --workspaces"
   },

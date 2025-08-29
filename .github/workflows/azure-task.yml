@@ -1,0 +1,23 @@
+name: 'build azure devops extension'
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: npm ci
+      - run: npm run build
+      - run: npm run lint
+      - run: npm run format && git diff-files
+      - run: npm run test
+      - run: npm run package
+      - run: npm run vsix
+        working-directory: azure-task
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vsix
+          path: azure-task/vsix/*.vsix

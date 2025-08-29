@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "./SetupGitForWindowsSDK",
+    "outDir": "./SetupGitForWindowsSDK/lib",
+    "sourceMap": true,
+    "composite": true
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules", "SetupGitForWindowsSDK/lib"],
+  "references": [
+    {"path": "../shared"}
+  ]
+}

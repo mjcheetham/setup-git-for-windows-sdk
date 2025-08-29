@@ -1,0 +1,5 @@
+# VSIX package build output
+vsix/
+
+# Task run local temp files
+.taskkey

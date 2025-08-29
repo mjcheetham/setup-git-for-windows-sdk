@@ -12,6 +12,7 @@
   "exclude": ["node_modules", "shared", "github-action"],
   "references": [
     {"path": "./shared"},
-    {"path": "./github-action"}
+    {"path": "./github-action"},
+    {"path": "./azure-task"},
   ]
 }

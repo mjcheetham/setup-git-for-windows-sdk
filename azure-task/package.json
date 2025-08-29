@@ -1,0 +1,33 @@
+{
+  "name": "setup-git-for-windows-sdk-azure",
+  "version": "1.0.0",
+  "description": "Azure DevOps extension providing an Azure Pipelines task to set up the Git for Windows SDK.",
+  "private": true,
+  "main": "SetupGitForWindowsSDK/lib/main.js",
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write **/*.ts",
+    "format-check": "prettier --check **/*.ts",
+    "lint": "eslint SetupGitForWindowsSDK/*.ts SetupGitForWindowsSDK/__tests__/**/*.ts",
+    "package": "ncc build --source-map --out SetupGitForWindowsSDK/dist",
+    "vsix": "npx tfx extension create --manifest-globs vss-extension.json --output-path vsix",
+    "test": "jest",
+    "all": "npm run build && npm run format && npm run lint && npm run package && npm run vsix && npm test"
+  },
+  "dependencies": {
+    "azure-pipelines-task-lib": "^4.17.3",
+    "setup-git-for-windows-sdk-shared": "file:../shared"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.0.0",
+    "@types/node": "^20.0.0",
+    "@types/q": "^1.5.8",
+    "eslint": "^9.34.0",
+    "jest": "^29.0.0",
+    "prettier": "3.6.2",
+    "rimraf": "^5.0.0",
+    "tfx-cli": "^0.21.3",
+    "ts-jest": "^29.0.0",
+    "typescript": "^5.0.0"
+  }
+}
