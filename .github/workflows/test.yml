@@ -19,11 +19,11 @@ jobs:
       - run: npm run format && git diff-files
       - run: npm run test
       - run: npm run package
-      - name: Verify that `dist/index.js` is up to date
+      - name: Verify that `github-action/dist/index.js` is up to date
         shell: bash
         run: |
           # `ncc` produces output with mixed line endings
-          test -z "$(git diff -aw HEAD -- ':(exclude)dist/index.js.map' | tee diff.txt)" || {
+          test -z "$(git diff -aw HEAD -- ':(exclude)github-action/dist/index.js.map' | tee diff.txt)" || {
             echo 'Files changed after `npm run package`'
             cat diff.txt
             exit 1

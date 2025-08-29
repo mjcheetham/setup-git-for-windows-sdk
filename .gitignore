@@ -96,7 +96,7 @@ Thumbs.db
 
 # Ignore built ts files
 __tests__/runner/*
-lib/**/*
+lib
 
 # Ignore downloaded 64-bit minimal SDK
 /git-sdk-64-minimal/

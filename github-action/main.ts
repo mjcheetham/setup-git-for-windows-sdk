@@ -1,5 +1,4 @@
-import {run} from './src/action'
-import {ICore} from './src/core'
+import {run, ICore} from 'setup-git-for-windows-sdk-shared'
 import * as core from '@actions/core'
 import * as cache from '@actions/cache'
 

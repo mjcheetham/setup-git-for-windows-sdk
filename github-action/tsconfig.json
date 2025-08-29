@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./lib",
+    "sourceMap": true,
+    "composite": true
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules", "lib"],
+  "references": [
+    {"path": "../shared"}
+  ]
+}

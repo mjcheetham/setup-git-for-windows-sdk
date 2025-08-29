@@ -80,16 +80,20 @@ On self-hosted runners, the SDK files persist after the workflow run is done. To
 
 > First, you'll need to have a reasonably modern version of `node` handy, such as Node 12.
 
-Install the dependencies
+This is now a monorepo with two packages:
+- `shared/` - Platform-agnostic shared library 
+- `github-action/` - GitHub Actions specific implementation
+
+Install the dependencies for all packages
 
 ```bash
-$ npm install
+$ npm run install-all
 ```
 
-Build the Action and package it for distribution
+Build all packages and package the GitHub Action for distribution
 
 ```bash
-$ npm run build && npm run package
+$ npm run package
 ```
 
 Run the tests :heavy_check_mark:
@@ -119,3 +123,26 @@ Time:        31.11 s
 Ran all test suites.
 ...
 ```
+
+## Monorepo Structure
+
+This repository has been converted to a monorepo structure with the following
+organization:
+
+- **`shared/`** - Platform-agnostic shared library (`setup-git-for-windows-sdk-shared`)
+  - Contains the core business logic for setting up Git for Windows SDK
+  - Exports reusable functions and interfaces
+  - Can be consumed by different platforms (GitHub Actions, Azure DevOps, CLI
+    tools, etc.)
+
+- **`github-action/`** - GitHub Actions specific implementation
+  - Implements the `ICore` interface using `@actions/core` and `@actions/cache`
+  - Contains the main entry point for the GitHub Action
+  - Packages the action using `@vercel/ncc` for distribution
+
+### Key Benefits
+
+1. **Reusability**: The shared library can be used across different CI/CD platforms
+2. **Maintainability**: Core logic is centralized in the shared library
+3. **Testability**: Each package can be tested independently
+4. **Modularity**: Clean separation between platform-specific and platform-agnostic code

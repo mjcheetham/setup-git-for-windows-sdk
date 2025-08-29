@@ -42,5 +42,5 @@ inputs:
     default: ${{ github.token }}
 runs:
   using: 'node20'
-  main: 'dist/index.js'
-  post: 'dist/index.js'
+  main: 'github-action/dist/index.js'
+  post: 'github-action/dist/index.js'

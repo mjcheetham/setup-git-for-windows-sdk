@@ -1,7 +1,7 @@
 import * as fs from 'fs'
-import * as git from '../git'
-import * as spawn from '../spawn'
-import {ICore} from '../core'
+import * as git from '../src/git'
+import * as spawn from '../src/spawn'
+import {ICore} from '../src/core'
 
 const core: ICore = {
   isCacheAvailable: () => false,

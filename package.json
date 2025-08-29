@@ -1,17 +1,20 @@
 {
-  "name": "setup-git-for-windows-sdk",
+  "name": "setup-git-for-windows-sdk-root",
   "version": "1.11.0",
   "private": true,
-  "description": "Set up an environment to develop Git for WindowsTypeScript template action",
-  "main": "lib/main.js",
+  "workspaces": [
+    "shared",
+    "github-action"
+  ],
   "scripts": {
-    "build": "tsc",
-    "format": "prettier --write **/*.ts",
-    "format-check": "prettier --check **/*.ts",
-    "lint": "eslint **/*.ts",
-    "package": "ncc build --source-map",
-    "test": "jest",
-    "all": "npm run build && npm run format && npm run lint && npm run package && npm test"
+    "build": "npm run build --workspaces",
+    "format": "npm run format --workspaces",
+    "format-check": "npm run format-check --workspaces",
+    "lint": "npm run lint --workspaces",
+    "test": "npm run test --workspaces",
+    "package": "npm run package --workspace=github-action",
+    "all": "npm run build && npm run format && npm run lint && npm run package && npm run test",
+    "install-all": "npm install --workspaces"
   },
   "repository": {
     "type": "git",
@@ -26,35 +29,19 @@
   ],
   "author": "",
   "license": "MIT",
-  "dependencies": {
-    "@actions/cache": "^4.0.5",
-    "@actions/core": "^1.11.1",
-    "@adobe/node-fetch-retry": "^2.2.0",
-    "@octokit/rest": "^20.1.2",
-    "node-fetch": "^2.7.0",
-    "unzipper": "^0.12.3"
-  },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.34.0",
     "@stylistic/eslint-plugin": "^4.4.1",
-    "@types/jest": "^30.0.0",
-    "@types/node": "^24.3.0",
-    "@types/unzipper": "^0.10.11",
     "@typescript-eslint/eslint-plugin": "^8.40.0",
     "@typescript-eslint/parser": "^8.40.0",
-    "@vercel/ncc": "^0.38.3",
     "eslint": "^9.34.0",
     "eslint-plugin-anti-trojan-source": "^1.1.1",
     "eslint-plugin-github": "^6.0.0",
     "eslint-plugin-jest": "^29.0.1",
     "eslint-plugin-prettier": "^5.5.4",
     "globals": "^16.3.0",
-    "jest": "^30.0.5",
-    "jest-circus": "^30.0.5",
-    "js-yaml": "^4.1.0",
     "prettier": "3.6.2",
-    "ts-jest": "^29.4.1",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.41.0"
   }

@@ -29,7 +29,7 @@ export default tseslint.config([
             ecmaVersion: 9,
             sourceType: "module",
             parserOptions: {
-                project: "./tsconfig.json",
+                project: ["./tsconfig.json"],
             },
         },
         rules: {
